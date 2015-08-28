@@ -1,15 +1,17 @@
 from distutils.core import setup
 
-print 'Thank you for install this tool'
+with open('README.rst') as file:
+	long_description = file.read()
 
 setup(
 	name='pydemon',
-	version='0.0.2',
+	version='0.0.3',
 	py_modules=['pydemon'],
 	author ='becxer',
 	author_email='becxer87@gmail.com',
 	url = 'https://github.com/becxer/pydemon',
-	description = 'Monitor for any changes in your Project',
+	description ='Monitor for any changes in your Project',
+	long_description = long_description,
 	license='MIT',
 	classifiers=[
 		'Development Status :: 3 - Alpha',
