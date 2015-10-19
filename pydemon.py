@@ -21,10 +21,6 @@ pydemon_log = '.pydemon.log'
 pydemon_dat = '.pydemon.dat'
 dat_obj = {}
 
-if len(sys.argv) == 1:
-	print 'usage : ./pydemon "bash command" or your-script.sh'
-	exit()
-
 def set_bashCmd():
 	global bashCmd
 	bashCmd = ""
@@ -94,26 +90,39 @@ def save_dat(obj ,datpath):
 	datf.close()
 	return None
 
-dat_obj = load_dat(pydemon_dat)
-while True:
-	if last_time != now_time :
-		
-		set_bashCmd()
-		
-		dat_obj = load_dat(pydemon_dat)
-		dat_obj['run_count'] += 1
-		
-		print "[#"+str(dat_obj['run_count'])+"]---------------------------"
-		logf = open(pydemon_log,"a")
-		logf.write("T: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-					+" #"+str(dat_obj['run_count'])+" Log\n")
-		logf.write(run_cmd(bashCmd))
-		logf.close()
-		
-		save_dat(dat_obj,pydemon_dat)
-		
-		set_now_time('./')
-		last_time = now_time
-	else :	
-		set_now_time('./')	
-	time.sleep(sleep_time)
+def main_while():
+	global dat_obj
+	global now_time
+	global last_time
+	dat_obj = load_dat(pydemon_dat)
+	while True:
+		if last_time != now_time :
+			
+			set_bashCmd()
+			
+			dat_obj = load_dat(pydemon_dat)
+			dat_obj['run_count'] += 1
+			
+			print "[#"+str(dat_obj['run_count'])+"]---------------------------"
+			logf = open(pydemon_log,"a")
+			logf.write("T: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+						+" #"+str(dat_obj['run_count'])+" Log\n")
+			logf.write(run_cmd(bashCmd))
+			logf.close()
+			
+			save_dat(dat_obj,pydemon_dat)
+			
+			set_now_time('./')
+			last_time = now_time
+		else :	
+			set_now_time('./')	
+		time.sleep(sleep_time)
+
+def main():
+	if len(sys.argv) == 1:
+		print 'usage : ./pydemon "bash command" or your-script.sh'
+		exit()
+	main_while()
+
+if __name__  == "__main__":
+	main()

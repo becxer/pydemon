@@ -1,11 +1,11 @@
 from distutils.core import setup
 
-with open('README.rst') as file:
+with open('README') as file:
 	long_description = file.read()
 
 setup(
 	name='pydemon',
-	version='0.0.3',
+	version='0.0.11',
 	py_modules=['pydemon'],
 	author ='becxer',
 	author_email='becxer87@gmail.com',
@@ -19,6 +19,11 @@ setup(
 		'License :: OSI Approved :: MIT License',
 		'Programming Language :: Python :: 2.7',
 	],
+	entry_points={
+		'console_scripts':[
+			'pydemon = pydemon:main',
+		]
+	}
 )
 
 
