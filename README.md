@@ -1,7 +1,7 @@
 
 ##How to install
  
-		$ pip install pydemon
+		$ sudo pip install pydemon
 
 ##How to use
 
