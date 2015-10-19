@@ -1,9 +1,11 @@
 
-<h1>pydemon</h1>
+pydemon
 
 Monitor for any changes in your Project
 
-<h3> How to install </h3>
+How to install
 
 pip install pydemon
+
+How to ignore file (such as .swp)
 
