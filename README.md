@@ -19,7 +19,7 @@
 			"ignore_postfix": [
 				".swp", 
 				".log"
-				],
+			],
 			"run_count": 16
 		}
 
