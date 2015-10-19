@@ -1,11 +1,10 @@
 
-pydemon
+[pydemon] :: Monitor for any changes in your Project
 
-Monitor for any changes in your Project
+[How to install]
+ 
+  $ pip install pydemon
 
-How to install
+[How to ignore file such as ".swp"]
 
-pip install pydemon
-
-How to ignore file (such as .swp)
-
+  vim .blahblah
