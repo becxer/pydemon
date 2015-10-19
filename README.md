@@ -12,6 +12,14 @@
 ##How to ignore file such as ".swp"
 
 		$ vi .pydemon.dat
-		add your ignore pattern to "ignore_postfix"
-
+		
+		add your ignore pattern to "ignore_postfix" like below
+		
+		{
+			"ignore_postfix": [
+				".swp", 
+				".log"
+				],
+			"run_count": 16
+		}
 
