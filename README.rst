@@ -5,4 +5,8 @@
 
 [How to ignore file such as ".swp"]
 
-  vim .blahblah
+  $ vi .pydemon.dat
+
+  add your ignore pattern to "ignore_postfix"
+
+
