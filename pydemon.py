@@ -39,16 +39,16 @@ def set_now_time(path):
 	dirs = os.listdir(path)
 	for f in dirs:
 		fnow = path+'/'+f
-		if os.path.isdir(fnow) :
+		isIgnored = False
+		for postfix in dat_obj['ignore_postfix']:
+			if fnow.endswith(postfix) :
+				isIgnored = True
+				break
+		if os.path.isdir(fnow) and not isIgnored:
 			set_now_time(fnow)
-		elif os.path.getmtime(fnow) > now_time:
-			isIgnored = False
-			for postfix in dat_obj['ignore_postfix']:
-				if fnow.endswith(postfix) :
-					isIgnored = True
-					break
-			if not isIgnored :
-				now_time = os.path.getmtime(fnow)
+		elif os.path.getmtime(fnow) > now_time and not isIgnored:
+                        print fnow + " is changed"
+			now_time = os.path.getmtime(fnow)
 
 def run_cmd(bashCmd):
 	print str(bashCmd)
@@ -82,7 +82,7 @@ def load_dat(datpath):
 	else:
 		return {'run_count':0 , \
 				'ignore_postfix':[\
-				".swp", ".log"]}
+				".swp", ".log", ".git",".dat"]}
 
 def save_dat(obj ,datpath):
 	datf = open(datpath,'w')
@@ -112,10 +112,10 @@ def main_while():
 			
 			save_dat(dat_obj,pydemon_dat)
 			
-			set_now_time('./')
+			set_now_time('.')
 			last_time = now_time
 		else :	
-			set_now_time('./')	
+			set_now_time('.')	
 		time.sleep(sleep_time)
 
 def main():
