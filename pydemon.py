@@ -24,14 +24,19 @@ dat_obj = {}
 def set_bashCmd():
     global bashCmd
     bashCmd = ""
-    for i in range(len(sys.argv)):
-        if i > 0 :
-            if os.path.isfile(sys.argv[1]) and ('.sh' in sys.argv[1]):
-                f = open(sys.argv[1],"r")
-                bashCmd = f.read()
-                f.close()
-                break
-            bashCmd += sys.argv[i] + " "
+    if os.path.isfile(sys.argv[1]):
+        if '.sh' in sys.argv[1]:
+            f = open(sys.argv[1],"r")
+            bashCmd = f.read()
+            f.close()
+        elif '.py' in sys.argv[1]:
+            bashCmd = 'python ' + sys.argv[1]
+    else:
+        bashCmd = sys.argv[1]
+
+    for i in range(2,len(sys.argv)):
+        bashCmd += sys.argv[i] + " "
+    print bashCmd
 
 def set_now_time(path):
     global now_time
@@ -126,7 +131,7 @@ def main_while():
         time.sleep(sleep_time)
 
 def main():
-    if len(sys.argv) == 1:
+    if len(sys.argv) < 2:
         print 'usage : ./pydemon "bash command" or your-script.sh'
         exit()
     main_while()

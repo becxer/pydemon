@@ -5,7 +5,7 @@ with open('README') as file:
 
 setup(
 	name='pydemon',
-	version='0.0.13',
+	version='0.1.0',
 	py_modules=['pydemon'],
 	author ='becxer',
 	author_email='becxer87@gmail.com',
