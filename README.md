@@ -1,3 +1,6 @@
+##What is pydemon
+
+Relaunch your script when change detected in your directory.
 
 ##How to install
  
