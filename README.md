@@ -5,6 +5,8 @@
 
 ##How to use
 
+		$ pydemon yours.py
+		or
 		$ pydemon 'bash script'
 		or
 		$ pydemon script.sh
