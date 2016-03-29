@@ -62,7 +62,8 @@ def set_now_time(path):
 
 def run_cmd(bashCmd):
     print str(bashCmd)
-    print "[stdout]----------------------"
+    print "[stdout]----------------------------------------------------"
+    process_start_clock = time.time()
     process = subprocess.Popen(bashCmd, shell=True 
                 ,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     res = ''
@@ -75,12 +76,16 @@ def run_cmd(bashCmd):
             print output.strip()
         rc = process.poll()
     output, error = process.communicate()
-    print "[stderr]----------------------"
+    process_stop_clock = time.time()
+    during_clock = process_stop_clock - process_start_clock
     res += error
-    print error
     if process.returncode != 0 :
         print "[ERROR] process error"
-    print "pydemon is watching your directory..."
+    if len(error) > 0:
+        print "[stderr]----------------------------------------------------"
+        print error
+    print "[process end in %.2f sec]-----------------------------------" % (during_clock)
+    print "~(@_@)~ pydemon is watching your directory..."
     return res
 
 def load_dat(datpath):
@@ -115,7 +120,7 @@ def main_while():
             dat_obj = load_dat(pydemon_dat)
             dat_obj['run_count'] += 1
             
-            print "[#"+str(dat_obj['run_count'])+"]---------------------------"
+            print "[#"+str(dat_obj['run_count'])+"]-------------------------------------------------------"
             logf = open(pydemon_log,"a")
             logf.write("T: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
                         +" #"+str(dat_obj['run_count'])+" Log\n")
